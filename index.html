@@ -1,0 +1,236 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="portfolioApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harshini Srinivasa | Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js" defer></script>
+</head>
+<body ng-controller="PortfolioController">
+
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">H<span>.</span></a>
+
+            <button class="menu-button" type="button" aria-label="Toggle navigation" aria-expanded="{{menuOpen}}" ng-click="menuOpen = !menuOpen">
+                ☰
+            </button>
+
+            <nav ng-class="{'show-menu': menuOpen}">
+                <a ng-repeat="item in navigation"
+                   href="#{{item.id}}"
+                   ng-class="{'active-link': activeSection === item.id}"
+                   ng-click="menuOpen = false; activeSection = item.id">
+                    {{item.name}}
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="marquee-strip" aria-label="Portfolio highlights">
+        <div class="marquee-track">
+            <span> BCA DATA SCIENCE STUDENT </span>
+            <span> • </span>
+            <span> PASSIONATE ABOUT TECHNOLOGY </span>
+            <span> • </span>
+            <span> LEARNING • BUILDING • GROWING </span>
+            <span> • </span>
+            <span> BCA DATA SCIENCE STUDENT </span>
+            <span> • </span>
+            <span> PASSIONATE ABOUT TECHNOLOGY </span>
+            <span> • </span>
+            <span> LEARNING • BUILDING • GROWING </span>
+            <span> • </span>
+        </div>
+    </div>
+
+    <main>
+        <section class="home-section" id="home">
+            <div class="home-content">
+                <p class="small-heading"><span class="heading-line"></span> WELCOME TO MY PORTFOLIO</p>
+                <h1>I <span>Harshini Srinivasa</span></h1>
+                <h2>BCA Data Science Student</h2>
+                <p class="home-description">
+                    I am an undergraduate student interested in technology, programming,
+                    data-driven problem solving and continuous learning.
+                </p>
+                <div class="home-buttons">
+                    <a href="#contact" class="main-button">Contact Me</a>
+                    <a href="#about" class="secondary-button">Know More</a>
+                </div>
+            </div>
+
+            <div class="home-logo">
+                <div class="logo-decoration decoration-one"></div>
+                <div class="logo-decoration decoration-two"></div>
+                <div class="logo-circle">HS</div>
+                <div class="floating-tag">BCA Data Science</div>
+            </div>
+        </section>
+
+        <section class="section about-section" id="about">
+            <div class="section-heading">
+                <p>GET TO KNOW ME</p>
+                <h2>About Me</h2>
+                <div class="heading-underline"></div>
+            </div>
+
+            <div class="about-card interactive-card">
+                <div class="about-icon">✦</div>
+                <h3>Hello, I'm Harshini Srinivasa</h3>
+                <p>
+                    I am a BCA Data Science student at Amrita Vishwa Vidyapeetham,
+                    Mysuru Campus. I am interested in programming, data science and
+                    the ways technology can be used to solve real-world problems.
+                    I enjoy exploring new concepts, practising what I learn and
+                    improving my technical knowledge step by step.
+                </p>
+                <p class="biology-note">
+                    I also enjoy learning about scientific and biological concepts.
+                    Exploring subjects beyond computing helps me develop a broader
+                    perspective and strengthens my curiosity.
+                </p>
+              
+        </section>
+
+        <section class="section education-section" id="education">
+            <div class="section-heading">
+                <p>MY LEARNING JOURNEY</p>
+                <h2>Education</h2>
+                <div class="heading-underline"></div>
+            </div>
+
+            <div class="education-list">
+                <div class="education-card interactive-card" ng-repeat="item in education">
+                    <div class="education-year"><span>{{item.year}}</span></div>
+                    <div class="education-info">
+                        <span class="education-label">{{item.level}}</span>
+                        <h3>{{item.title}}</h3>
+                        <p>{{item.institution}}</p>
+                    </div>
+                    <div class="education-symbol">{{item.icon}}</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section skills-section" id="skills">
+            <div class="section-heading">
+                <p>WHAT I AM LEARNING</p>
+                <h2>My Skills</h2>
+                <div class="heading-underline"></div>
+            </div>
+
+            <p class="skills-description">
+                A growing set of technical and personal skills developed through learning and practice.
+            </p>
+
+            <div class="skill-category">
+                <h3 class="category-title"><span>⌘</span> Technical Skills</h3>
+                <div class="skills-container">
+                    <div class="skill-card"
+                         ng-repeat="skill in technicalSkills"
+                         ng-class="{'card-hovered': hoveredCard === skill.name}"
+                         ng-mouseenter="setHover(skill.name)"
+                         ng-mouseleave="clearHover()">
+                        <span class="skill-symbol">{{skill.icon}}</span>
+                        <h3>{{skill.name}}</h3>
+                        <p>{{skill.description}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-category personal-category">
+                <h3 class="category-title"><span>✧</span> Personal Skills</h3>
+                <div class="personal-skills-container">
+                    <div class="personal-skill-card" ng-repeat="skill in personalSkills">
+                        <span>{{skill.icon}}</span>
+                        <p>{{skill.name}}</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+<section class="section certificates-section" id="certificates">
+    <div class="section-heading">
+        <p>MY ACHIEVEMENTS</p>
+        <h2>Certificates</h2>
+        <div class="heading-underline"></div>
+    </div>
+
+    <div class="certificate-container">
+        <div class="certificate-card interactive-card"
+             ng-repeat="certificate in certificates">
+
+            <div class="certificate-icon">✧</div>
+
+            <h3>{{certificate.name}}</h3>
+            <p>{{certificate.provider}}</p>
+
+            <a ng-if="certificate.name === 'Python Essentials 1' || certificate.name === 'Python Essentials 2'"
+               class="view-certificate"
+               href="https://lnkd.in/p/gRN27rBv"
+               target="_blank"
+               rel="noopener noreferrer">
+                ✓ View Certificate ↗
+            </a>
+
+            <span ng-if="certificate.name !== 'Python Essentials 1' && certificate.name !== 'Python Essentials 2'"
+                  class="view-certificate">
+                ✓ View Certificate ↗
+            </span>
+
+        </div>
+    </div>
+</section>
+
+<section class="section contact-section" id="contact">
+    <div class="section-heading">
+        <p>LET'S CONNECT</p>
+        <h2>Contact Me</h2>
+        <div class="heading-underline"></div>
+    </div>
+
+    <div class="contact-card">
+        <p class="contact-description">
+            You can connect with me through email or LinkedIn.
+        </p>
+
+        <div class="contact-details">
+
+            <div class="email-display">
+                <span class="contact-icon">@</span>
+                <div>
+                    <h3>Email</h3>
+                    <a href="mailto:harshinisrinivasa2007@gmail.com">
+                        harshinisrinivasa2007@gmail.com
+                    </a>
+                </div>
+            </div>
+
+            <div class="linkedin-display">
+                <span class="contact-icon">in</span>
+                <div>
+                    <h3>LinkedIn</h3>
+                    <a href="https://www.linkedin.com/in/harshini-srinivasa-7097353a1?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_android"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        View LinkedIn Profile
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-logo">HS.</div>
+        <p>© {{currentYear}} Harshini Srinivasa. All rights reserved.</p>
+        <a href="#home">Back to Top ↑</a>
+    </footer>
+
+</body>
+</html>
